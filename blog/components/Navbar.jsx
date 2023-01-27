@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import {
   AppBar,
   Button,
@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { Search as SearchIcon, Menu as MenuIcon } from "@mui/icons-material/";
-
+import LoginRegModal from "./LoginRegModal";
 const Menu = styled(Box)({
   borderBottom: "1px solid black",
   display: "flex",
@@ -40,6 +40,9 @@ const LogoDsc = styled(Box)({
 });
 
 const Navbar = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <>
       <Container>
@@ -56,8 +59,9 @@ const Navbar = () => {
               <MenuItem sx={{ fontSize: "15px" }}>Books</MenuItem>
               <MenuItem sx={{ fontSize: "15px" }}>Videos</MenuItem>
               <MenuItem sx={{ fontSize: "15px" }}>Year in Review</MenuItem>
-              <Button>Login</Button>
+              <Button onClick={handleOpen}>Login</Button>
               <MenuItem
+                onClick={handleOpen}
                 sx={{
                   color: "#0049fb",
                   border: "1px solid #0049fb",
@@ -84,6 +88,7 @@ const Navbar = () => {
             </IconButton>
           </Menu>
         </AppBar>
+        <LoginRegModal open={open} handleClose={handleClose} />
       </Container>
     </>
   );

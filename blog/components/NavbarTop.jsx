@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import {
   AppBar,
   Button,
@@ -49,6 +49,9 @@ function ScrollTop(props) {
 }
 
 const NavbarTop = (props) => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <>
       <ScrollTop {...props}>
